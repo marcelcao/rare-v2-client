@@ -2,7 +2,7 @@
   "name": "rare-v2-client",
   "private": true,
   "version": "1.0.0",
-  "author": "David Poole",
+  "author": "marcelcao",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
