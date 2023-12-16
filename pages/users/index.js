@@ -1,3 +1,5 @@
+// THIS PAGE EXISTS IN CASE WE DECIDE TO HAVE A VIEW OF ALL USERS IN DATABASE ****
+
 // import React, { useEffect, useState } from 'react';
 // import { getUsers } from '../../utils/data/userData';
 // import UserCard from '../../components/cards/UserCard';

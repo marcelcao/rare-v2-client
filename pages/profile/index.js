@@ -28,7 +28,6 @@ export default function UserProfile() {
   };
 
   const updateUserProfile = () => {
-    // To add edit profile possibly
     router.push(`/profile/edit/${userDetails.id}`);
   };
 

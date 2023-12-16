@@ -15,7 +15,7 @@ export default function SearchBar() {
     getPosts().then((posts) => {
       const filteredPosts = posts.filter((post) => {
         const searchTerm = searchbar?.toLowerCase();
-        const postAttributes = Object.values(post).join(' ').toLowerCase(); // Combines all attributes for search
+        const postAttributes = Object.values(post).join(' ').toLowerCase(); // Combines all attributes for search as a single string
         return postAttributes.includes(searchTerm);
       });
 
