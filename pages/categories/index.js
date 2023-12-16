@@ -4,8 +4,8 @@ import CategoryCard from '../../components/cards/CategoryCard';
 
 function CategoryPage() {
   const categories = [
-    { id: 1, label: 'Category 1' },
-    { id: 2, label: 'Category 2' },
+    { id: 1, label: 'Category 1' }, // default example category placeholder
+    { id: 2, label: 'Category 2' }, // default example category placeholder
   ];
 
   return (
