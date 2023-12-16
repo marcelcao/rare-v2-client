@@ -40,7 +40,7 @@ function ViewPost() {
             </div>
             <div className="post-content-cont">
               <h2 className="post-details-title">{postDetails?.title}</h2>
-              <h7 className="post-details-text">{postDetails?.publication_date}</h7>
+              <h2 className="post-details-text">{postDetails?.publication_date}</h2>
               <h5 className="post-details-text post-content-detail">{postDetails?.content}</h5>
             </div>
           </div>
@@ -53,9 +53,8 @@ function ViewPost() {
           <section key={`comment--${comment.id}`} className="comment">
             <CommentCard
               id={comment.id}
-              postId={comment.post_id}
               content={comment.content}
-              authorId={comment.author_id}
+              authorId={comment.user}
               createdOn={comment.created_on}
               onUpdate={getAllComments}
             />

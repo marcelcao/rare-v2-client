@@ -10,7 +10,6 @@ import { getSingleUser } from '../../utils/data/userData';
 export default function CommentCard({
   id,
   authorId,
-  postId,
   content,
   createdOn,
   onUpdate,
@@ -46,8 +45,8 @@ export default function CommentCard({
           <div className="display-row">
             <Card.Img className="comment-profile-pic" src={commentUser.profile_image_url} />
             <div className="comment-user-cont">
-              <Card.Link className="comment-username" href={`/rareUsers/${commentUser.id}`}>{commentUser.first_name} {commentUser.last_name}</Card.Link>
-              <Card.Text className="comment-created">{createdOn}</Card.Text>
+              <Card.Link className="comment-username" href={`/rareUsers/${commentUser.id}`}>Comment by: {commentUser.first_name} {commentUser.last_name}</Card.Link>
+              <Card.Text className="comment-created">Posted On: {createdOn}</Card.Text>
             </div>
           </div>
           <div>{(user.id === authorId) ? (<Button className="delete-button" variant="black" onClick={deleteCommentCard}>x</Button>) : ''}</div>
@@ -62,7 +61,6 @@ export default function CommentCard({
 
 CommentCard.propTypes = {
   id: PropTypes.number.isRequired,
-  postId: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   authorId: PropTypes.number.isRequired,
   createdOn: PropTypes.string.isRequired,
