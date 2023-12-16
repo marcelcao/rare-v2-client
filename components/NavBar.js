@@ -30,7 +30,7 @@ export default function NavBar() {
             {/* <Link passHref href="/users/">
               <Nav.Link className="nav-lnk">Users</Nav.Link>
             </Link> */}
-            <Link passHref href="/profile">
+            <Link passHref href="/users">
               <Nav.Link className="nav-lnk">Profile</Nav.Link>
             </Link>
             <SearchBar className="me-3" />

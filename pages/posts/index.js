@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import PostCard from '../../components/cards/PostCard';
-import { useAuth } from '../../utils/context/authContext';
+// import { useAuth } from '../../utils/context/authContext';
 import { getPosts } from '../../utils/data/postData';
 
 function Home() {
   const [posts, setPosts] = useState([]);
   const router = useRouter();
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   const showPosts = () => {
-    getPosts(user.uid).then((data) => setPosts(data));
+    getPosts().then((data) => setPosts(data));
   };
   useEffect(() => {
     showPosts();
