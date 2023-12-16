@@ -1,14 +1,14 @@
 import { clientCredentials } from '../client';
 
 const getSingleUser = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/user/${id}`)
+  fetch(`${clientCredentials.databaseURL}/users/${id}`)
     .then((response) => response.json())
     .then(resolve)
     .catch(reject);
 });
 
 const updateUser = (user, uid) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/user/${user.id}`, {
+  fetch(`${clientCredentials.databaseURL}/users/${user.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

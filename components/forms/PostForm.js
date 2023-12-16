@@ -43,7 +43,7 @@ const PostForm = ({ postId }) => {
       title: currentPost.title,
       imageUrl: currentPost.imageUrl,
       content: currentPost.content,
-      userId: user.id,
+      uid: user.id,
     };
 
     if (postId) {
@@ -100,7 +100,7 @@ PostForm.propTypes = {
     title: PropTypes.string,
     image_url: PropTypes.string,
     content: PropTypes.string,
-    userId: PropTypes.string,
+    uid: PropTypes.string,
   }),
   postId: PropTypes.number,
 };

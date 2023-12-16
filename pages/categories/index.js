@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+// import { useRouter } from 'next/router';
 import CategoryCard from '../../components/cards/CategoryCard';
+import { getCategories } from '../../utils/data/categoryData';
 
 function CategoryPage() {
-  const categories = [
-    { id: 1, label: 'Category 1' }, // default example category placeholder
-    { id: 2, label: 'Category 2' }, // default example category placeholder
-  ];
+  const [categories, setCategories] = useState([]);
+  // const router = useRouter();
+  // const { user } = useAuth();
+
+  const showCategories = () => {
+    getCategories().then((data) => setCategories(data));
+  };
+
+  useEffect(() => {
+    showCategories();
+  }, []);
+
+  // const categories = [
+  //   { id: 1, label: 'Category 1' }, // default example category placeholder
+  //   { id: 2, label: 'Category 2' }, // default example category placeholder
+  // ];
 
   return (
     <Container>
