@@ -13,21 +13,16 @@ export default function EditPost() {
   useEffect(() => {
     if (id) {
       const parsedId = parseInt(id, 10); // Parse id as an integer
-      console.warn({ id });
-      console.warn({ parsedId });
       getSinglePost(parsedId).then(setPost);
     }
   }, [id]);
 
-  console.warn({ post });
-
   return (
     <>
       <Head>
-        <title>Update {post.title} </title>
+        <title>Update {post.title}</title>
       </Head>
-      <PostForm post={post} />
-
+      <PostForm postId={post.id} />
     </>
   );
 }

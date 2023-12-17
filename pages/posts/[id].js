@@ -40,7 +40,7 @@ function ViewPost() {
             </div>
             <div className="post-content-cont">
               <h2 className="post-details-title">{postDetails?.title}</h2>
-              <h7 className="post-details-text">{postDetails?.publication_date}</h7>
+              <h6 className="post-details-text">{postDetails?.publication_date}</h6>
               <h5 className="post-details-text post-content-detail">{postDetails?.content}</h5>
             </div>
           </div>
