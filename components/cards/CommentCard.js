@@ -49,7 +49,7 @@ export default function CommentCard({
               <Card.Text className="comment-created">Posted On: {createdOn}</Card.Text>
             </div>
           </div>
-          <div>{(user.id === authorId) ? (<Button className="delete-button" variant="black" onClick={deleteCommentCard}>x</Button>) : ''}</div>
+          <div>{(user.id === authorId) ? (<Button className="delete-button" variant="black" onClick={deleteCommentCard}>Delete Comment</Button>) : ''}</div>
 
         </Card.Title>
         <Card.Text>{content}</Card.Text>
