@@ -8,7 +8,7 @@ import {
   Button,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
-import SearchBar from './SearchBar';
+// import SearchBar from './SearchBar'; note** search bar is a stretch goal
 
 export default function NavBar() {
   return (
@@ -33,7 +33,7 @@ export default function NavBar() {
             <Link passHref href="/users">
               <Nav.Link className="nav-lnk">Profile</Nav.Link>
             </Link>
-            <SearchBar className="me-3" />
+            {/* <SearchBar className="me-3" /> */}
             <Button className="nav-btn" variant="light" onClick={signOut}>
               sign out
             </Button>
