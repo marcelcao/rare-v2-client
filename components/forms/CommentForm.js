@@ -24,7 +24,7 @@ const CommentForm = ({
       setCurrentComment({
         id: obj.id,
         user: obj.user,
-        post: obj.post,
+        post: commentPostId,
         createdOn: obj.createdOn,
         content: obj.content,
       });
@@ -48,7 +48,7 @@ const CommentForm = ({
         user: obj.user,
         content: currentComment.content,
         createdOn: obj.createdOn,
-        post: commentPostId,
+        post: obj.post,
       };
       updateComment(putComment).then(
         () => router.replace(`/posts/${commentPostId}`),

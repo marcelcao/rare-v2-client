@@ -13,7 +13,7 @@ export default function UpdateComment() {
 
   useEffect(() => {
     getSingleComment(commentId.id).then(setEditComment);
-    getSingleComment(commentId.id).then((data) => setPostId(data.post_id));
+    getSingleComment(commentId.id).then((data) => setPostId(data.post));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [commentId]);
 
