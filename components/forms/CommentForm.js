@@ -29,6 +29,7 @@ const CommentForm = ({
         content: obj.content,
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [obj, user]);
 
   const handleChange = (e) => {
