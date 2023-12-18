@@ -9,7 +9,7 @@ const initialState = {
   id: 0,
   content: '',
   user: 0,
-  post: '',
+  post: 0,
   createdOn: '',
 };
 
@@ -48,7 +48,7 @@ const CommentForm = ({
         user: obj.user,
         content: currentComment.content,
         createdOn: obj.createdOn,
-        post: obj.post,
+        post: commentPostId,
       };
       updateComment(putComment).then(
         () => router.replace(`/posts/${commentPostId}`),
@@ -59,7 +59,6 @@ const CommentForm = ({
         post: commentPostId,
         user: user.id,
       };
-      // Send POST request to API
       createCommentOnPost(user.id, commentPostId, comment).then(() => router.replace(`/posts/${commentPostId}`)).then(() => onSubmit());
       setCurrentComment(initialState);
     }
@@ -93,7 +92,7 @@ CommentForm.propTypes = {
     id: PropTypes.number,
     content: PropTypes.string,
     user: PropTypes.number,
-    post: PropTypes.string,
+    post: PropTypes.number,
     createdOn: PropTypes.string,
   }),
   commentPostId: PropTypes.number,
