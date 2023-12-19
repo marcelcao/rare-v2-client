@@ -59,9 +59,11 @@ function RegisterForm({ user, updateUserInfo }) {
         createdOn: formData.createdOn,
         uid: user.uid,
       };
-      updateUser(userInfo, user.uid).then(() => router.push('/'));
+      updateUser(userInfo, user.uid).then(() => router.push('/users'));
     } else {
-      registerUser(formData).then(() => updateUserInfo(user.uid)).then(() => router.push('/'));
+      registerUser(formData)
+        .then(() => updateUserInfo(user.uid))
+        .then(window.location.href = '/');
     }
   };
 
