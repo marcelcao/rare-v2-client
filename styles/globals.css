@@ -19,7 +19,8 @@ a {
 }
 
 body {
-  background-color: #949494;
+  background-color: #bababa;
+  color: rgb(85, 85, 85);
 }
 
 /* form css */
@@ -682,6 +683,8 @@ body {
 .sheep .head .ear.ear-1,
 .sheep .head .ear.ear-2 {
   transform-origin: top left;
+  background-color: #bababa;
+  color: rgb(85, 85, 85);
 }
 
 .post-img {

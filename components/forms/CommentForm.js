@@ -8,8 +8,8 @@ import { createCommentOnPost, updateComment } from '../../utils/data/commentData
 const initialState = {
   id: 0,
   content: '',
-  authorId: 0,
-  postId: '',
+  user: 0,
+  post: 0,
   createdOn: '',
 };
 
@@ -23,12 +23,13 @@ const CommentForm = ({
     if (obj.id) {
       setCurrentComment({
         id: obj.id,
-        authorId: obj.authorId,
-        postId: obj.postId,
+        user: obj.user,
+        post: commentPostId,
         createdOn: obj.createdOn,
         content: obj.content,
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [obj, user]);
 
   const handleChange = (e) => {
@@ -45,10 +46,10 @@ const CommentForm = ({
     if (obj.id) {
       const putComment = {
         id: obj.id,
-        authorId: obj.authorId,
+        user: obj.user,
         content: currentComment.content,
         createdOn: obj.createdOn,
-        postId: obj.postId,
+        post: obj.post,
       };
       updateComment(putComment).then(
         () => router.replace(`/posts/${commentPostId}`),
@@ -56,10 +57,9 @@ const CommentForm = ({
     } else {
       const comment = {
         content: currentComment.content,
-        postId: commentPostId,
-        authorId: user.id,
+        post: commentPostId,
+        user: user.id,
       };
-      // Send POST request to API
       createCommentOnPost(user.id, commentPostId, comment).then(() => router.replace(`/posts/${commentPostId}`)).then(() => onSubmit());
       setCurrentComment(initialState);
     }
@@ -92,8 +92,8 @@ CommentForm.propTypes = {
   obj: PropTypes.shape({
     id: PropTypes.number,
     content: PropTypes.string,
-    authorId: PropTypes.number,
-    postId: PropTypes.string,
+    user: PropTypes.number,
+    post: PropTypes.number,
     createdOn: PropTypes.string,
   }),
   commentPostId: PropTypes.number,
