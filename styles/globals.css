@@ -683,3 +683,8 @@ body {
 .sheep .head .ear.ear-2 {
   transform-origin: top left;
 }
+
+.post-img {
+  max-width: 250px;
+  max-height: 250px;
+}

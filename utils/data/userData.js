@@ -20,7 +20,14 @@ const updateUser = (user, uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getAllUsers = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/users`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
 export {
   getSingleUser,
   updateUser,
+  getAllUsers,
 };
