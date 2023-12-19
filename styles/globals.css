@@ -21,3 +21,8 @@ body {
   background-color: #bababa;
   color: rgb(85, 85, 85);
 }
+
+.post-img {
+  max-width: 250px;
+  max-height: 250px;
+}

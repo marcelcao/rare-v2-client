@@ -1,11 +1,10 @@
 import { clientCredentials } from '../client';
 
-const getPosts = (uid) => new Promise((resolve, reject) => {
+const getPosts = () => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/posts`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${uid}`,
     },
   })
     .then((response) => response.json())
