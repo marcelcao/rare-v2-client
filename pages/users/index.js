@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
 import { getSingleUser } from '../../utils/data/userData';
+import Sheep from '../../components/dontWorryAboutIt/Sheep';
 // import { clientCredentials } from '../../utils/client';
 
 export default function UserProfile() {
@@ -26,6 +27,7 @@ export default function UserProfile() {
 
   return (
     <>
+      <Sheep />
       <Head>
         <title>Profile Page</title>
       </Head>
