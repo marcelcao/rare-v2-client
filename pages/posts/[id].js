@@ -32,6 +32,15 @@ function ViewPost() {
     getSingleUser(id).then((data) => setAuthor(data));
   };
 
+  const deleteThisPost = () => {
+    console.warn('Deleting post with ID:', id);
+    if (window.confirm('Delete Post?')) {
+      deletePost(id).then(() => {
+        router.push('/');
+      });
+    }
+  };
+
   useEffect(() => {
     getSinglePost(id, user.uid)
       .then(setPostDetails)
@@ -59,7 +68,8 @@ function ViewPost() {
               <h2 className="post-details-text">Category: {category.label}</h2>
               <h5 className="post-details-text post-content-detail">{postDetails?.content}</h5>
             </div>
-            <div>{(user.id === author) ? (<Button className="delete-button" variant="black" onClick={deletePost}>Delete Post</Button>) : ''}</div>
+            <div>{(postDetails.rare_user?.id === user.id) ? (<Button className="delete-button" variant="black" onClick={deleteThisPost}>Delete This Post</Button>) : ''}</div>
+            <div>{(postDetails.rare_user?.id === user.id) ? (<Button className="delete-button" variant="black" href={`/posts/edit/${postDetails.id}`}>Edit This Post</Button>) : ''}</div>
           </div>
         </div>
       </div>
