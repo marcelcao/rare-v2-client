@@ -7,7 +7,7 @@ import { createPost, updatePost } from '../../utils/data/postData';
 import { getCategories } from '../../utils/data/categoryData'; // Import the function to fetch categories
 
 const initialState = {
-  id: '',
+  id: 0,
   title: '',
   imageUrl: '',
   content: '',
@@ -15,7 +15,7 @@ const initialState = {
   categoryId: 0, // Add categoryId to the initial state
 };
 
-const PostForm = ({ post }) => {
+const PostForm = ({ postObj }) => {
   const { user } = useAuth();
   const router = useRouter();
   const [currentPost, setCurrentPost] = useState(initialState);
@@ -25,17 +25,17 @@ const PostForm = ({ post }) => {
     // Fetch categories when the component mounts
     getCategories().then(setCategories);
 
-    if (post.id) {
+    if (postObj.id) {
       setCurrentPost({
-        id: post.id,
-        title: post.title,
-        imageUrl: post.image_url,
-        content: post.content,
-        category: post.categoryId,
+        id: postObj.id,
+        title: postObj.title,
+        imageUrl: postObj.image_url,
+        content: postObj.content,
+        category: postObj.categoryId,
         rareUser: user.id,
       });
     }
-  }, [post, user]);
+  }, [postObj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,7 +48,7 @@ const PostForm = ({ post }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (post && post.id) {
+    if (postObj.id) {
       const payload = {
         id: currentPost.id,
         title: currentPost.title,
@@ -116,13 +116,13 @@ const PostForm = ({ post }) => {
         </Form.Select>
       </Form.Group>
 
-      <Button type="submit">{post.id ? 'Update' : 'Create'} Post</Button>
+      <Button type="submit">{postObj.id ? 'Update' : 'Create'} Post</Button>
     </Form>
   );
 };
 
 PostForm.propTypes = {
-  post: PropTypes.shape({
+  postObj: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
     image_url: PropTypes.string,
@@ -134,7 +134,7 @@ PostForm.propTypes = {
 };
 
 PostForm.defaultProps = {
-  post: initialState,
+  postObj: initialState,
 };
 
 export default PostForm;
