@@ -39,12 +39,7 @@ function Home() {
         {posts.map((post) => (
           <div key={`post--${post.id}`} className="post">
             <PostCard
-              id={post.id}
-              userId={post.user_id}
-              title={post.title}
-              imageUrl={post.image_url}
-              publicationDate={post.publication_date}
-              content={post.content}
+              obj={post}
               onUpdate={showPosts}
             />
           </div>
