@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Image } from 'react-bootstrap';
-import { getSinglePost } from '../../utils/data/postData';
+import { Image, Button } from 'react-bootstrap';
+import { getSinglePost, deletePost } from '../../utils/data/postData';
 import { getCommentsOnSinglePost } from '../../utils/data/commentData';
 import { getSingleCategory } from '../../utils/data/categoryData';
 import CommentCard from '../../components/cards/CommentCard';
@@ -59,6 +59,7 @@ function ViewPost() {
               <h2 className="post-details-text">Category: {category.label}</h2>
               <h5 className="post-details-text post-content-detail">{postDetails?.content}</h5>
             </div>
+            <div>{(user.id === author) ? (<Button className="delete-button" variant="black" onClick={deletePost}>Delete Post</Button>) : ''}</div>
           </div>
         </div>
       </div>
