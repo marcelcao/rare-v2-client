@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { createPost, updatePost, getSinglePost } from '../../utils/data/postData';
+import { createPost, updatePost } from '../../utils/data/postData';
 import { getCategories } from '../../utils/data/categoryData'; // Import the function to fetch categories
 
 const initialState = {
+  id: '',
   title: '',
   imageUrl: '',
   content: '',
-  categoryId: '', // Add categoryId to the initial state
+  publicationDate: '',
+  categoryId: 0, // Add categoryId to the initial state
 };
 
-const PostForm = ({ postId }) => {
+const PostForm = ({ post }) => {
   const { user } = useAuth();
   const router = useRouter();
   const [currentPost, setCurrentPost] = useState(initialState);
@@ -23,17 +25,17 @@ const PostForm = ({ postId }) => {
     // Fetch categories when the component mounts
     getCategories().then(setCategories);
 
-    if (postId) {
-      getSinglePost(postId).then((post) => {
-        setCurrentPost({
-          title: post.title,
-          imageUrl: post.image_url,
-          content: post.content,
-          categoryId: post.category.id, // Set the categoryId from the fetched post
-        });
+    if (post.id) {
+      setCurrentPost({
+        id: post.id,
+        title: post.title,
+        imageUrl: post.image_url,
+        content: post.content,
+        category: post.categoryId,
+        rareUser: user.id,
       });
     }
-  }, [postId]);
+  }, [post, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,27 +46,27 @@ const PostForm = ({ postId }) => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = {
-      title: currentPost.title,
-      imageUrl: currentPost.imageUrl,
-      content: currentPost.content,
-      categoryId: currentPost.categoryId,
-      uid: user.id,
-      publicationDate: new Date().toISOString(),
-      approved: true, // You can set the default value according to your requirements
-    };
-
-    if (postId) {
-      // Update existing post
-      await updatePost(postId, payload);
+    if (post && post.id) {
+      const payload = {
+        id: currentPost.id,
+        title: currentPost.title,
+        imageUrl: currentPost.image_url,
+        content: currentPost.content,
+        categoryId: currentPost.category,
+        publicationDate: currentPost.publication_date,
+        rareUser: user.id,
+      };
+      console.warn({ payload });
+      updatePost(currentPost.id, payload)
+        .then(() => router.push('/'));
     } else {
-      // Create a new post
-      await createPost(payload);
+      const payload = { ...currentPost, rareUser: user.id };
+      console.warn('Payload:', payload);
+      createPost(payload)
+        .then(() => router.push('/'));
     }
-
-    router.push('/');
   };
 
   return (
@@ -105,7 +107,7 @@ const PostForm = ({ postId }) => {
           onChange={handleChange}
           required
         >
-          <option value="" disabled>Select a category</option>
+          <option value="">Select a category</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.label}
@@ -114,17 +116,25 @@ const PostForm = ({ postId }) => {
         </Form.Select>
       </Form.Group>
 
-      <Button type="submit">{postId ? 'Update' : 'Create'} Post</Button>
+      <Button type="submit">{post.id ? 'Update' : 'Create'} Post</Button>
     </Form>
   );
 };
 
 PostForm.propTypes = {
-  postId: PropTypes.number,
+  post: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    image_url: PropTypes.string,
+    content: PropTypes.string,
+    categoryId: PropTypes.number,
+    rareUser: PropTypes.number,
+    publicationDate: PropTypes.string,
+  }),
 };
 
 PostForm.defaultProps = {
-  postId: 0,
+  post: initialState,
 };
 
 export default PostForm;

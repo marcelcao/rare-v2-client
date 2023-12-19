@@ -59,9 +59,11 @@ function RegisterForm({ user, updateUserInfo }) {
         createdOn: formData.createdOn,
         uid: user.uid,
       };
-      updateUser(userInfo, user.uid).then(() => router.push('/'));
+      updateUser(userInfo, user.uid).then(() => router.push('/users'));
     } else {
-      registerUser(formData).then(() => updateUserInfo(user.uid));
+      registerUser(formData)
+        .then(() => updateUserInfo(user.uid))
+        .then(window.location.href = '/');
     }
   };
 
@@ -93,7 +95,7 @@ function RegisterForm({ user, updateUserInfo }) {
         <Form.Text className="text-muted" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="createdOn">
-        <Form.Label>Creation Date</Form.Label>
+        <Form.Label>Date Created</Form.Label>
         <Form.Control as="textarea" name="createdOn" placeholder="ex. 2023-11-17" required value={formData.createdOn} onChange={handleChange} />
         <Form.Text className="text-muted" />
       </Form.Group>

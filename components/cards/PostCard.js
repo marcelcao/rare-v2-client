@@ -12,10 +12,9 @@ export default function PostCard({ obj, userId, onUpdate }) {
 
   const isCurrentUserPost = user && user.id === userId;
 
-  const deleteThisPost = () => {
-    console.warn('Deleting post with ID:', userId);
+  const deleteThisPost = (id) => {
     if (window.confirm('Delete Post?')) {
-      deletePost(userId).then(() => onUpdate());
+      deletePost(id).then(() => onUpdate());
     }
   };
 
@@ -34,7 +33,7 @@ export default function PostCard({ obj, userId, onUpdate }) {
       <Card.Body>
         <Image className="post-img" src={obj.image_url} alt={obj.title} style={{ width: 'auto', height: 'auto' }} />
         <Card.Text className="post-user-link">
-          by {obj.rare_user.first_name}
+          by {obj.rare_user.first_name} {obj.rare_user.last_name}
         </Card.Text>
         <Card.Text className="post-date">Posted on: {obj.publication_date}</Card.Text>
         <Card.Text className="comment-count"> {obj.comment_count} Comments</Card.Text>
