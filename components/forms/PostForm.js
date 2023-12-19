@@ -71,8 +71,9 @@ const PostForm = ({ postObj }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3">
-        <Form.Label>Title</Form.Label>
+      <Form.Label>Title</Form.Label>
+      <input type="text" name="title" className="input" placeholder="What's this post called?" required value={currentPost.title} onChange={handleChange} />
+      {/* <Form.Group className="mb-3">
         <Form.Control
           name="title"
           placeholder="What's this post called?"
@@ -80,28 +81,31 @@ const PostForm = ({ postObj }) => {
           value={currentPost.title}
           onChange={handleChange}
         />
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>Image Url</Form.Label>
+      </Form.Group> */}
+      <Form.Label>Image Url</Form.Label>
+      <input type="text" name="imageUrl" className="input" placeholder="Place your url here?" value={currentPost.imageUrl} onChange={handleChange} />
+      {/* <Form.Group className="mb-3">
         <Form.Control
           name="imageUrl"
           placeholder="Place your url here?"
           value={currentPost.imageUrl}
           onChange={handleChange}
         />
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>Content</Form.Label>
+      </Form.Group> */}
+      <Form.Label>Content</Form.Label>
+      <textarea type="text" name="content" className="input" placeholder="Content" required value={currentPost.content} onChange={handleChange} />
+      {/* <Form.Group className="mb-3">
         <Form.Control
           name="content"
           required
           value={currentPost.content}
           onChange={handleChange}
         />
-      </Form.Group>
+      </Form.Group> */}
       <Form.Group className="mb-3">
         <Form.Label>Category</Form.Label>
-        <Form.Select
+        <select
+          className="input"
           name="categoryId"
           value={currentPost.categoryId}
           onChange={handleChange}
@@ -113,7 +117,7 @@ const PostForm = ({ postObj }) => {
               {category.label}
             </option>
           ))}
-        </Form.Select>
+        </select>
       </Form.Group>
 
       <Button type="submit">{postObj.id ? 'Update' : 'Create'} Post</Button>

@@ -23,10 +23,18 @@ body {
   color: rgb(85, 85, 85);
 }
 
+.comment-profile-pic {
+  width: 75px;
+}
+
+.comment-card {
+  width: 500px;
+}
+
 /* form css */
 .input {
   display: flex;
-  width: 500px;
+  width: 750px;
   margin-top: 20px;
   color: black;
   border: none;
@@ -55,6 +63,7 @@ body {
   width: 285px;
   height: 381px;
   perspective: 1000px;
+  margin: 5px;
 }
 
 .title {
