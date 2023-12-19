@@ -9,31 +9,6 @@ import { deletePost } from '../../utils/data/postData';
 export default function PostCard({ obj, userId, onUpdate }) {
   const router = useRouter();
   const { user } = useAuth();
-  // const formattedDate = new Date(publicationDate).toLocaleDateString();
-
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       // fetching user data
-  //     } catch (error) {
-  //       console.error('Error fetching user data:', error);
-  //     }
-  //   };
-
-  //   if (userId) {
-  //     fetchUserData();
-  //   }
-  // }, [userId]);
-
-  // if (!title) {
-  //   return (
-  //     <Card className="post-card text-center">
-  //       <Card.Body>
-  //         <Card.Text>No post data available</Card.Text>
-  //       </Card.Body>
-  //     </Card>
-  //   );
-  // }
 
   const isCurrentUserPost = user && user.id === userId;
 
@@ -56,13 +31,10 @@ export default function PostCard({ obj, userId, onUpdate }) {
           <Card.Text className="post-title-link">{obj.title}</Card.Text>
         </Link>
       </Card.Header>
-      <Card.Header className="post-header" style={{ cursor: 'pointer' }}>
-        <Card.Text className="post-title-link">{obj.title}</Card.Text>
-      </Card.Header>
       <Card.Body>
         <Image className="post-img" src={obj.image_url} alt={obj.title} style={{ width: 'auto', height: 'auto' }} />
         <Card.Text className="post-user-link">
-          by {obj.rare_user}
+          by {obj.rare_user.first_name}
         </Card.Text>
         <Card.Text className="post-date">Posted on: {obj.publication_date}</Card.Text>
         <Card.Text className="comment-count"> {obj.comment_count} Comments</Card.Text>
