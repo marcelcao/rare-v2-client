@@ -45,7 +45,7 @@ export default function UserProfile() {
         <h2 className="post-details-title">{userDetails.first_name} {userDetails.last_name}</h2>
         <h5 className="post-details-title">{userDetails.email}</h5>
         <p className="post-details-text">Bio: {userDetails.bio} </p>
-        <p className="post-content">Followers: {userDetails.subscription_count} </p>
+        {/* <p className="post-content">Followers: {userDetails.subscription_count} </p> */}
         <Button className="sub-btn" onClick={updateUserProfile}>
           Update Profile
         </Button>
