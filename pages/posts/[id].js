@@ -5,16 +5,16 @@ import { useRouter } from 'next/router';
 import { Image, Button } from 'react-bootstrap';
 import { getSinglePost, deletePost } from '../../utils/data/postData';
 import { getCommentsOnSinglePost } from '../../utils/data/commentData';
-import { getSingleCategory } from '../../utils/data/categoryData';
+// import { getSingleCategory } from '../../utils/data/categoryData';
 import CommentCard from '../../components/cards/CommentCard';
 import CommentForm from '../../components/forms/CommentForm';
 import { useAuth } from '../../utils/context/authContext';
-import { getSingleUser } from '../../utils/data/userData';
+// import { getSingleUser } from '../../utils/data/userData';
 
 function ViewPost() {
   const [postDetails, setPostDetails] = useState({});
-  const [author, setAuthor] = useState([]);
-  const [category, setCategory] = useState([]);
+  // const [author, setAuthor] = useState([]);
+  // const [category, setCategory] = useState([]);
   const [comments, setComments] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
@@ -24,13 +24,14 @@ function ViewPost() {
     getCommentsOnSinglePost(id).then((data) => setComments(data));
   };
 
-  const getPostCategory = () => {
-    getSingleCategory(id).then((data) => setCategory(data));
-  };
+  // const getPostCategory = () => {
+  //   getSingleCategory(id).then((data) => setCategory(data));
+  // };
+  console.warn(postDetails);
 
-  const getPostAuthor = () => {
-    getSingleUser(id).then((data) => setAuthor(data));
-  };
+  // const getPostAuthor = () => {
+  //   getSingleUser(id).then((data) => setAuthor(data));
+  // };
 
   const deleteThisPost = () => {
     console.warn('Deleting post with ID:', id);
@@ -44,8 +45,8 @@ function ViewPost() {
   useEffect(() => {
     getSinglePost(id, user.uid)
       .then(setPostDetails)
-      .then(getPostCategory)
-      .then(getPostAuthor)
+      // .then(getPostCategory)
+      // .then(getPostAuthor)
       .then(getAllComments);
   }, [id]);
 
@@ -63,9 +64,9 @@ function ViewPost() {
             </div>
             <div className="post-content-cont">
               <h2 className="post-details-title">{postDetails?.title}</h2>
-              <h2 className="post-details-text">By: {author.first_name} {author.last_name}</h2>
+              <h2 className="post-details-text">By: {postDetails.rare_user?.first_name} {postDetails.rare_user?.last_name}</h2>
               <h2 className="post-details-text">Posted on: {postDetails?.publication_date}</h2>
-              <h2 className="post-details-text">Category: {category.label}</h2>
+              <h2 className="post-details-text">Category: {postDetails.category?.label}</h2>
               <h5 className="post-details-text post-content-detail">{postDetails?.content}</h5>
             </div>
             <div>{(postDetails.rare_user?.id === user.id) ? (<Button className="delete-button" variant="black" onClick={deleteThisPost}>Delete This Post</Button>) : ''}</div>

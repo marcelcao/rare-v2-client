@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Card, Image } from 'react-bootstrap';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useAuth } from '../../utils/context/authContext';
 import { deletePost } from '../../utils/data/postData';
 
 export default function PostCard({ obj, userId, onUpdate }) {
-  const router = useRouter();
+  // const router = useRouter();
   const { user } = useAuth();
 
   const isCurrentUserPost = user && user.id === userId;
@@ -19,35 +19,76 @@ export default function PostCard({ obj, userId, onUpdate }) {
   };
 
   return (
-    <Card className="post-card text-center">
-      <Card.Header className="post-header" style={{ cursor: 'pointer' }}>
-        {isCurrentUserPost ? (
-          <Button className="delete-btn" onClick={deleteThisPost}>
-            x
-          </Button>
-        ) : null}
-        <Link href={`/posts/${obj.id}`} passHref>
-          <Card.Text className="post-title-link">{obj.title}</Card.Text>
-        </Link>
-      </Card.Header>
-      <Card.Body>
-        <Image className="post-img" src={obj.image_url} alt={obj.title} style={{ width: 'auto', height: 'auto' }} />
-        <Card.Text className="post-user-link">
-          by {obj.rare_user.first_name} {obj.rare_user.last_name}
-        </Card.Text>
-        <Card.Text className="post-date">Posted on: {obj.publication_date}</Card.Text>
-        <Card.Text className="comment-count"> {obj.comment_count} Comments</Card.Text>
+    <>
+      {/* FrontSide */}
+      <Link href={`/posts/${obj.id}`} passHref>
+        <div className="myCard" style={{ cursor: 'pointer' }}>
+          {isCurrentUserPost ? (
+            <Button className="delete-btn" onClick={deleteThisPost}>
+              x
+            </Button>
+          ) : null}
+          <div className="innerCard">
+            <div className="frontSide">
+              <p className="url"><Image className="post-img" src={obj.image_url} alt={obj.title} style={{ width: 'auto', height: 'auto' }} /></p>
+              <p className="title">
+                <Card.Text className="post-title-link">
+                  {obj.title}
+                </Card.Text>
+              </p>
+            </div>
+            {/* BackSide */}
+            <div className="backSide">
+              <p className="title">
+                <Card.Text className="post-user-link">
+                  by {obj.rare_user.first_name} {obj.rare_user.last_name}
+                </Card.Text>
+              </p>
+              <p><Card.Text className="post-date">Posted on: {obj.publication_date}</Card.Text>
+                <Card.Text className="comment-count"> {obj.comment_count} Comments</Card.Text>
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* <Button
+          className="view-btn"
+          onClick={() => {
+            router.push(`/posts/${obj.id}`);
+          }}
+        >
+          View Post
+        </Button> */}
+      </Link>
+    </>
+    // <Card className="post-card text-center">
+    //   <Card.Header className="post-header" style={{ cursor: 'pointer' }}>
+    //     {isCurrentUserPost ? (
+    //       <Button className="delete-btn" onClick={deleteThisPost}>
+    //         x
+    //       </Button>
+    //     ) : null}
+    //     <Link href={`/posts/${obj.id}`} passHref>
+    //       <Card.Text className="post-title-link">{obj.title}</Card.Text>
+    //     </Link>
+    //   </Card.Header>
+    //   <Card.Body>
+    //     <Image className="post-img" src={obj.image_url} alt={obj.title} style={{ width: 'auto', height: 'auto' }} />
+    //     <Card.Text className="post-user-link">
+    //       by {obj.rare_user.first_name} {obj.rare_user.last_name}
+    //     </Card.Text>
+    //     <Card.Text className="post-date">Posted on: {obj.publication_date}</Card.Text>
+    //     <Card.Text className="comment-count"> {obj.comment_count} Comments</Card.Text>
 
-      </Card.Body>
-      <Button
-        className="view-btn"
-        onClick={() => {
-          router.push(`/posts/${obj.id}`);
-        }}
-      >
-        View Post
-      </Button>
-    </Card>
+  //   </Card.Body>
+  //   <Button
+  //     className="view-btn"
+  //     onClick={() => {
+  //       router.push(`/posts/${obj.id}`);
+  //     }}
+  //   >
+  //     View Post
+  //   </Button>
+  // </Card>
   );
 }
 

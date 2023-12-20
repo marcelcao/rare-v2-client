@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+// import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { createCommentOnPost, updateComment } from '../../utils/data/commentData';
 
 const initialState = {
@@ -68,7 +68,8 @@ const CommentForm = ({
   return (
     <>
       <Form onSubmit={handleSubmit} className="comment-form-cont">
-        <Form.Group className="mb-3">
+        <input type="text" name="content" className="input" placeholder="Comment" required value={currentComment.content} onChange={handleChange} />
+        {/* <Form.Group className="mb-3">
           <FloatingLabel
             controlId="floatingInput1"
             // label="Content"
@@ -76,7 +77,7 @@ const CommentForm = ({
           >
             <Form.Control className="content-form" name="content" type="text" required value={currentComment.content} onChange={handleChange} />
           </FloatingLabel>
-        </Form.Group>
+        </Form.Group> */}
         <Button className="edit-btn" variant="primary" type="submit">
           Submit
         </Button>

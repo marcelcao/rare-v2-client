@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
 import { getSingleUser } from '../../utils/data/userData';
+import Sheep from '../../components/dontWorryAboutIt/Sheep';
 // import { clientCredentials } from '../../utils/client';
 
 export default function UserProfile() {
@@ -26,6 +27,7 @@ export default function UserProfile() {
 
   return (
     <>
+      <Sheep />
       <Head>
         <title>Profile Page</title>
       </Head>
@@ -43,7 +45,7 @@ export default function UserProfile() {
         <h2 className="post-details-title">{userDetails.first_name} {userDetails.last_name}</h2>
         <h5 className="post-details-title">{userDetails.email}</h5>
         <p className="post-details-text">Bio: {userDetails.bio} </p>
-        <p className="post-content">Followers: {userDetails.subscription_count} </p>
+        {/* <p className="post-content">Followers: {userDetails.subscription_count} </p> */}
         <Button className="sub-btn" onClick={updateUserProfile}>
           Update Profile
         </Button>
